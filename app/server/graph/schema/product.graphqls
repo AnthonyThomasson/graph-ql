@@ -1,0 +1,27 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+  rank: Int!
+}
+
+input NewProduct {
+  name: String!
+  price: Float!
+  rank: Int!
+}
+
+type ProductConnection {
+  Total: Int!
+  Edges: [ProductEdge]!
+  PageInfo: PageInfo!
+}
+
+type ProductEdge {
+  Cursor: String!
+  Node: Product!
+}

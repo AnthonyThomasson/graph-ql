@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: dev.Dockerfile
+    ports:
+      - "3000:3000"
+      - "40000:40000"
+    env_file:
+      - ./app/.env
+    depends_on:
+      - "db"
+    volumes:
+      - ./app/server:/app
+      # exclude static files to preserve frontend changes
+      - /app/static
+  db:
+    image: "mysql:8.0"
+    restart: "always"
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./db/.env
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/seed/:/docker-entrypoint-initdb.d/

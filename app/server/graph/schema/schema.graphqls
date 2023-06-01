@@ -1,0 +1,30 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Query {
+  products(page: PaginationInput, order: Order): ProductConnection!
+}
+
+type Mutation {
+  createProduct(input: NewProduct!): Product!
+}
+
+input Order {
+  field: String!
+  direction: String!
+}
+
+input PaginationInput {
+  first: Int
+  after: String
+  last: Int
+  before: String
+}
+
+type PageInfo {
+  StartCursor: String!
+  EndCursor: String!
+  HasPreviousPage: Boolean!
+  HasNextPage: Boolean!
+}
